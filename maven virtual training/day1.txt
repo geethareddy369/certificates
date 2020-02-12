@@ -1,0 +1,104 @@
+
+MAVEN IS A BUILD TOOL
+______________________________
+
+used for build process- converting source code into projects
+basically for java based projects
+make things compact
+
+
+make build process easy and automate it
+more uniformity-more structure
+clear idea of what the project isabout
+migration to new feautres
+
+install the maven
+_____________________
+git bash client
+git-scm.com
+download & install the exe
+
+
+maven checking
+___________________
+3. mvn -version 
+4. sudo apt update 
+
+
+
+pom-description of project-project object model
+https://fts.capgemini.com/private/33128637953866/MavenOverview.pdf 
+
+
+.m2 folder wil have local repository
+if not it connecys tocentral repository
+
+https://maven.apache.org/pom.html 
+
+
+mkdir Sample1
+cd Sampl1
+vi pom.xml
+
+
+Can you please tell me how to exit ?
+ 
+ 
+:wq
+ 
+ 
+mkdir src
+cd src
+mkdir main
+cd main
+mkdir java
+cd java
+
+
+
+
+package helloworld;
+
+public class HelloWorld {
+
+	public static void main(String args[]){
+
+		System.out.println("Hello World, Maven");
+
+	}
+
+} 
+
+
+
+
+DAY-2
+__________________________________
+Modularised pom approch
+not repeat any variable
+single pooint of configuration
+significance of property configuaration and using them in pom
+
+
+
+https://maven.apache.org/guides/getting-started/index.html#How_do_I_build_more_than_one_project_at_once 
+https://maven.apache.org/guides/introduction/introduction-to-the-pom.html 
+ 
+
+ 
+https://github.com/cgvaikulka/java-hello-world-with-maven 
+
+ 
+
+create a project using architype and you can change class name, compile install and run
+
+
+
+https://github.com/sonatype/maven-example-en
+
+
+https://books.sonatype.com/mvnex-book/reference/multimodule.html
+
+https://github.com/sonatype/maven-example-en/tree/master/examples
+
+https://maven.apache.org/guides/introduction/introduction-to-the-pom.html

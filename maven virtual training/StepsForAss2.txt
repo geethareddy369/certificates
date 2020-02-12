@@ -1,0 +1,110 @@
+Gitbash Commands
+
+mkdir HelloWorldMaven
+cd HelloWorldMaven
+mkdir -p src/main/java/hello
+Within hello create two java classes for eg HelloWorld.java and Greeter.java
+
+HelloWorld.java
+package hello;
+public class HelloWorld {
+    public static void main(String[] args) {
+        Greeter greeter = new Greeter();
+        System.out.println(greeter.sayHello());
+    }
+}
+
+Greeter.java
+package hello;
+public class Greeter {
+    public String sayHello() {
+        return "Hello world!";
+    }
+}
+
+Create a file named pom.xml at the root of the project nd give it the following contents:
+
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.springframework</groupId>
+    <artifactId>jb-hello-world-maven</artifactId>
+    <packaging>jar</packaging>
+    <version>0.1.0</version>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>2.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer
+                                    implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>hello.HelloWorld</mainClass>
+                                </transformer>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+
+Build Java code
+
+mvn compile
+
+mvn package
+
+mvn install
+
+
+Declare Dependencies
+
+package hello;
+
+import org.joda.time.LocalTime;
+
+public class HelloWorld {
+    public static void main(String[] args) {
+		LocalTime currentTime = new LocalTime();
+		System.out.println("The current local time is: " + currentTime);
+		Greeter greeter = new Greeter();
+		System.out.println(greeter.sayHello());
+	}
+}
+
+Here HelloWorld uses Joda Time’s LocalTime
+
+If you were to run mvn compile to build the project now, the build would fail because you’ve not declared Joda Time as
+ a compile dependency in the build. You can fix that by adding the following lines to pom.xml (within the <project>)
+ 
+ <properties>
+    <java.version>1.8</java.version>
+</properties>
+
+<dependencies>
+    <dependency>
+        <groupId>joda-time</groupId>
+        <artifactId>joda-time</artifactId>
+        <version>2.2</version>
+    </dependency>
+</dependencies>
+
+mvn compile
+
+Run project
+
+java -cp target/jb-hello-world-maven-0.1.0.jar hello.HelloWorld
+
+output is Hello world!
